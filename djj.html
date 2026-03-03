@@ -68,41 +68,14 @@
         <button class="refresh" onclick="fetchMotorData()">🔄 手动刷新</button>
     </div>
 
-    <!-- 引入 Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js"></script>
-
     <script>
-        // 完整的 Firebase 配置（已替换为你的真实信息）
-        const firebaseConfig = {
-            apiKey: "AIzaSyAMo57I_rkuBwG-H3A26yLyoau6hkgNWxI",
-            authDomain: "mis-zzy.firebaseapp.com",
-            databaseURL: "https://mis-zzy.firebaseio.com",
-            projectId: "mis-zzy",
-            storageBucket: "mis-zzy.firebasestorage.app",
-            messagingSenderId: "523598761990",
-            appId: "1:523598761990:web:1da1af1a58b08f5989f387",
-            measurementId: "G-KJTBZJW8X5"
-        };
+        // 树莓派 API 地址（已替换为你的树莓派 IP）
+        const API_URL = "http://192.168.1.122:5000/api/motor";
 
-        // 初始化 Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const database = firebase.database();
-        const motorRef = database.ref('raspberry_pi/motor');
-
-        // 匿名登录（获取读取权限）
-        auth.signInAnonymously().catch(error => {
-            console.error("登录失败：", error);
-            alert("数据加载失败，请检查网络或 Firebase 配置");
-        });
-
-        // 实时获取电机数据
         function fetchMotorData() {
-            motorRef.once('value').then(snapshot => {
-                const data = snapshot.val();
-                if (data) {
+            fetch(API_URL)
+                .then(response => response.json())
+                .then(data => {
                     // 更新页面数据
                     document.getElementById('status').textContent = data.status;
                     document.getElementById('speed').textContent = data.speed;
@@ -111,7 +84,7 @@
                     
                     // 根据状态切换颜色
                     const statusEl = document.getElementById('status');
-                    statusEl.className = "value"; // 重置样式
+                    statusEl.className = "value";
                     if (data.status === "forward") {
                         statusEl.classList.add("status-forward");
                     } else if (data.status === "backward") {
@@ -119,23 +92,17 @@
                     } else {
                         statusEl.classList.add("status-stop");
                     }
-                } else {
-                    alert("暂无电机数据，请先运行树莓派模拟程序");
-                }
-            }).catch(error => {
-                console.error("获取数据失败：", error);
-                alert("获取数据失败：" + error.message);
-            });
+                })
+                .catch(error => {
+                    console.error("获取数据失败：", error);
+                    alert("获取数据失败，请检查网页和树莓派是否在同一局域网内");
+                });
         }
 
-        // 页面加载时自动获取数据，且实时监听变化
+        // 页面加载时自动获取数据，每3秒自动刷新
         window.onload = () => {
             fetchMotorData();
-            // 实时监听数据变化（无需手动刷新）
-            motorRef.on('value', snapshot => {
-                const data = snapshot.val();
-                if (data) fetchMotorData();
-            });
+            setInterval(fetchMotorData, 3000);
         };
     </script>
 </body>
