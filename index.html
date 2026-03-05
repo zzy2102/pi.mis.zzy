@@ -3,496 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初音未来甩大葱团队</title>
-    <style>
-        /* 全局样式重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft Yahei", sans-serif;
-        }
-
-        /* 页面基础样式 */
-        body {
-            background-color: #000;
-            color: #fff;
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* 导航栏样式 */
-        nav {
-            background-color: #1A0033;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 999;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            color: #7CFC00;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #7CFC00;
-        }
-
-        /* 通用模块样式 */
-        .section {
-            padding: 60px 0;
-        }
-
-        .section-title {
-            color: #7CFC00;
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2rem;
-        }
-
-        /* 首页样式 */
-        #home {
-            background: linear-gradient(#1A0033, #000);
-            text-align: center;
-            padding: 100px 0;
-        }
-
-        #home h1 {
-            font-size: 3rem;
-            color: #7CFC00;
-            margin-bottom: 20px;
-        }
-
-        #home p {
-            font-size: 1.2rem;
-            color: #ccc;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* 关于我们样式 */
-        #about {
-            background-color: #1A0033;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .about-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 10px;
-        }
-
-        .about-card h3 {
-            color: #7CFC00;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .about-card p {
-            color: #ccc;
-        }
-
-        /* 项目展示样式 */
-        #projects {
-            background-color: #000;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background-color: #1A0033;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .project-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .project-info {
-            padding: 20px;
-        }
-
-        .project-info h3 {
-            color: #7CFC00;
-            margin-bottom: 10px;
-        }
-
-        .project-info p {
-            color: #ccc;
-        }
-
-        /* 团队成员样式 */
-        #team {
-            background-color: #1A0033;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .team-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .team-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            overflow: hidden;
-            border: 3px solid #7CFC00;
-        }
-
-        .team-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .team-info h3 {
-            color: #fff;
-            margin-bottom: 5px;
-        }
-
-        .team-info .role {
-            color: #7CFC00;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .team-info p {
-            color: #ccc;
-        }
-
-        /* 应用下载专区样式 */
-        #app-download {
-            background-color: #1A0033;
-            padding: 60px 0;
-        }
-
-        .download-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .app-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 30px;
-            transition: all 0.3s ease;
-        }
-
-        .app-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .app-icon {
-            font-size: 3rem;
-            color: #7CFC00;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .app-info h3 {
-            color: #fff;
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .app-info p {
-            color: #ccc;
-            text-align: center;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .download-btns {
-            text-align: center;
-        }
-
-        .download-btns .btn {
-            background-color: #7CFC00;
-            color: #1A0033;
-            padding: 10px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-
-        .download-btns .btn:hover {
-            background-color: #66cc00;
-            transform: scale(1.05);
-        }
-
-        /* 二维码样式 */
-        .qrcode-box {
-            margin-top: 15px;
-            text-align: center;
-        }
-
-        .qrcode-box img {
-            width: 120px;
-            height: 120px;
-            border: 2px solid #7CFC00;
-            padding: 5px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .qrcode-box img:hover {
-            transform: scale(1.05);
-        }
-
-        .qrcode-box p {
-            color: #7CFC00;
-            font-size: 0.9rem;
-            margin-top: 8px;
-        }
-
-        .download-tips {
-            background-color: rgba(124, 252, 0, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .download-tips h4 {
-            color: #7CFC00;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .download-tips ul {
-            list-style: none;
-            padding-left: 20px;
-        }
-
-        .download-tips li {
-            color: #fff;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .download-tips li::before {
-            content: "💡";
-            position: absolute;
-            left: -20px;
-        }
-
-        /* 加入我们样式 */
-        #join {
-            background-color: #000;
-        }
-
-        .join-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #1A0033;
-            padding: 40px;
-            border-radius: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            color: #7CFC00;
-            margin-bottom: 8px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid #7CFC00;
-            border-radius: 5px;
-            color: #fff;
-            font-size: 1rem;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #66cc00;
-        }
-
-        .submit-btn {
-            background-color: #7CFC00;
-            color: #1A0033;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background-color: #66cc00;
-        }
-
-        /* 页脚样式 */
-        footer {
-            background-color: #1A0033;
-            padding: 30px 0;
-            text-align: center;
-            color: #ccc;
-        }
-
-        /* 响应式适配 */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            #home h1 {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
-    <!-- 引入字体图标 -->
+    <title>初音未来甩大葱团队 - 非淡泊无以明志，非宁静无以致远</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- 导航栏 -->
-    <nav>
+    <nav class="navbar">
         <div class="container nav-container">
-            <div class="logo">初音未来甩大葱团队</div>
+            <div class="logo">
+                <h2>初音未来甩大葱团队</h2>
+            </div>
             <ul class="nav-links">
                 <li><a href="#home" class="active">首页</a></li>
                 <li><a href="#about">关于我们</a></li>
                 <li><a href="#projects">项目展示</a></li>
                 <li><a href="#team">团队成员</a></li>
-                <li><a href="#app-download">应用下载</a></li>
                 <li><a href="#join">加入我们</a></li>
             </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </nav>
 
-    <!-- 首页 -->
-    <section id="home" class="section">
-        <div class="container">
-            <h1>初音未来甩大葱团队</h1>
-            <p>专注于大葱处理机的研发与移动应用开发，以技术赋能农业自动化，打造高效、智能的大葱加工解决方案</p>
+    <!-- 首页轮播 -->
+    <section id="home" class="hero">
+        <div class="carousel">
+            <div class="slide active">
+                <img src="images/hero1.jpg" alt="团队主视觉">
+                <div class="caption">
+                    <h1>初音未来甩大葱团队</h1>
+                    <p>非淡泊无以明志，非宁静无以致远。</p>
+                    <a href="#about" class="btn primary-btn">立即了解</a>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/hero2.jpg" alt="章丘大葱">
+                <div class="caption">
+                    <h2>核心物料：章丘大葱</h2>
+                    <p>我们的项目灵感与核心原料，来自正宗章丘大葱。</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/hero3.jpg" alt="机械大能">
+                <div class="caption">
+                    <h2>机械大能</h2>
+                    <p>团队核心机械工程师，负责结构与传动设计。</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/hero4.jpg" alt="机械大帝">
+                <div class="caption">
+                    <h2>机械大帝</h2>
+                    <p>资深机械专家，主导大型设备研发。</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/hero5.jpg" alt="电控专家">
+                <div class="caption">
+                    <h2>电控专家</h2>
+                    <p>精通STM32与树莓派，负责控制系统开发。</p>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="images/hero6.jpg" alt="特邀专家">
+                <div class="caption">
+                    <h2>特邀专家</h2>
+                    <p>行业资深顾问，提供技术指导与战略支持。</p>
+                </div>
+            </div>
+            <!-- 轮播控制按钮 -->
+            <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
 
     <!-- 关于我们 -->
-    <section id="about" class="section">
+    <section id="about" class="about section">
         <div class="container">
             <h2 class="section-title">关于我们</h2>
             <div class="about-content">
-                <div class="about-card">
-                    <h3>团队愿景</h3>
-                    <p>成为农业自动化领域的创新标杆，让大葱加工告别传统手工模式，实现全流程智能化、高效化。</p>
-                </div>
-                <div class="about-card">
-                    <h3>核心优势</h3>
-                    <p>融合机械设计、嵌入式开发、移动应用开发等多领域技术，拥有自主研发的核心算法和硬件方案。</p>
-                </div>
-                <div class="about-card">
-                    <h3>发展历程</h3>
-                    <p>团队成立于2024年，从初代大葱处理机原型起步，逐步迭代出多版本智能设备及配套控制应用。</p>
+                <div class="about-text">
+                    <h3>团队简介</h3>
+                    <p>初音未来甩大葱团队成立于<span class="highlight">2025年12月25日</span>，是一支专注于智能农业与嵌入式开发的技术团队。</p>
+                    <p>我们以“非淡泊无以明志，非宁静无以致远”为核心理念，致力于用技术赋能传统农业，打造智能大葱处理系统，推动农业自动化升级。</p>
+                    <h3>核心技术栈</h3>
+                    <ul class="tech-stack">
+                        <li><i class="fas fa-microchip"></i> 树莓派自动化开发</li>
+                        <li><i class="fas fa-cogs"></i> STM32嵌入式编程</li>
+                        <li><i class="fas fa-robot"></i> AI视觉识别（YOLO）</li>
+                        <li><i class="fas fa-mobile-alt"></i> MIT App Inventor移动控制</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 项目展示 -->
-    <section id="projects" class="section">
+    <section id="projects" class="projects section">
         <div class="container">
             <h2 class="section-title">项目展示</h2>
-            <div class="project-grid">
+            <div class="projects-grid">
                 <div class="project-card">
-                    <img src="images/project1.jpg" alt="大葱处理机初号机" class="project-img">
+                    <div class="project-img">
+                        <img src="images/hero2.jpg" alt="大葱处理机">
+                    </div>
                     <div class="project-info">
-                        <h3>大葱处理机初号机</h3>
-                        <p>初代原型机，实现大葱切段、去皮基础功能，验证核心机械结构可行性。</p>
+                        <h3>智能大葱处理机</h3>
+                        <p>基于树莓派和YOLO的智能分拣与处理系统，可自动识别大葱品质并分级，提升分拣效率80%。</p>
+                        <a href="https://github.com/zzy2102/dacong" class="btn secondary-btn" target="_blank">
+                            <i class="fab fa-github"></i> 查看源码
+                        </a>
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="images/project2.jpg" alt="智能控制1.0版本" class="project-img">
+                    <div class="project-img">
+                        <img src="images/hero5.jpg" alt="多设备控制平台">
+                    </div>
                     <div class="project-info">
-                        <h3>智能控制1.0版本</h3>
-                        <p>配套移动应用1.0，支持设备启停、参数调节，优化人机交互体验。</p>
+                        <h3>多设备控制平台</h3>
+                        <p>通过MIT App Inventor开发手机App，实现对电机、水泵、摄像头等外设的远程实时控制。</p>
+                        <a href="https://github.com/zzy2102/dacong" class="btn secondary-btn" target="_blank">
+                            <i class="fab fa-github"></i> 查看源码
+                        </a>
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="images/project3.jpg" alt="大葱处理机2.0升级版" class="project-img">
+                    <div class="project-img">
+                        <img src="images/hero1.jpg" alt="AI赛车挑战">
+                    </div>
                     <div class="project-info">
-                        <h3>大葱处理机2.0升级版</h3>
-                        <p>新增数据监控、故障预警功能，设备效率提升30%，稳定性显著增强。</p>
+                        <h3>AI赛车挑战</h3>
+                        <p>参与极限竞速赛事，开发AI自动驾驶算法，结合机器视觉实现无人化高速行驶。</p>
+                        <a href="https://github.com/zzy2102/dacong" class="btn secondary-btn" target="_blank">
+                            <i class="fab fa-github"></i> 查看源码
+                        </a>
                     </div>
                 </div>
             </div>
@@ -500,7 +146,7 @@
     </section>
 
     <!-- 团队成员 -->
-    <section id="team" class="section">
+    <section id="team" class="team section">
         <div class="container">
             <h2 class="section-title">团队成员</h2>
             <div class="team-grid">
@@ -516,7 +162,7 @@
                 </div>
                 <div class="team-card">
                     <div class="team-img">
-                        <img src="images/hero4.jpg" alt="大寇">
+                        <img src="images/hero3.jpg" alt="大寇">
                     </div>
                     <div class="team-info">
                         <h3>大寇</h3>
@@ -528,125 +174,53 @@
         </div>
     </section>
 
-    <!-- 应用下载专区 -->
-    <section id="app-download" class="section">
-        <div class="container">
-            <h2 class="section-title">初音未来甩大葱应用下载</h2>
-            <div class="download-grid">
-                <!-- 初号机版本 -->
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="app-info">
-                        <h3>初音未来甩大葱应用 - 初号机</h3>
-                        <p>初代核心版本，实现大葱处理机基础控制功能</p>
-                        <div class="download-btns">
-                            <a href="https://gitee.com/zengzhiyuanyyds/welsh-onion/raw/master/base.apk%EF%BC%88%E5%88%9D%E5%8F%B7%E6%9C%BA%EF%BC%89.1" 
-                               class="btn primary-btn" 
-                               download="初音未来甩大葱-初号机.apk">
-                                <i class="fas fa-download"></i> 立即下载
-                            </a>
-                            <!-- 二维码 -->
-                            <div class="qrcode-box">
-                                <img src="images/qrcode_chuhaoji.png" alt="初号机扫码下载">
-                                <p>扫码下载</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 1.0版本 -->
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="app-info">
-                        <h3>初音未来甩大葱应用 - 1.0版本</h3>
-                        <p>正式版，优化控制逻辑，提升稳定性</p>
-                        <div class="download-btns">
-                            <a href="https://gitee.com/zengzhiyuanyyds/welsh-onion/raw/master/base.apk%EF%BC%881.0%EF%BC%89.1" 
-                               class="btn primary-btn" 
-                               download="初音未来甩大葱-1.0版本.apk">
-                                <i class="fas fa-download"></i> 立即下载
-                            </a>
-                            <!-- 二维码 -->
-                            <div class="qrcode-box">
-                                <img src="images/qrcode_v1.0.png" alt="1.0版本扫码下载">
-                                <p>扫码下载</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2.0版本 -->
-                <div class="app-card">
-                    <div class="app-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <div class="app-info">
-                        <h3>初音未来甩大葱应用 - 2.0版本</h3>
-                        <p>升级版，新增数据监控、故障预警等功能</p>
-                        <div class="download-btns">
-                            <a href="https://gitee.com/zengzhiyuanyyds/welsh-onion/raw/master/%E5%88%9D%E9%9F%B3%E6%9C%AA%E6%9D%A5%E7%94%A9%E5%A4%A7%E8%91%B1(2.0).apk.1" 
-                               class="btn primary-btn" 
-                               download="初音未来甩大葱-2.0版本.apk">
-                                <i class="fas fa-download"></i> 立即下载
-                            </a>
-                            <!-- 二维码 -->
-                            <div class="qrcode-box">
-                                <img src="images/qrcode_v2.0.png" alt="2.0版本扫码下载">
-                                <p>扫码下载</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 下载说明 -->
-            <div class="download-tips">
-                <h4>📌 下载说明</h4>
-                <ul>
-                    <li>所有应用均基于MIT App Inventor开发，仅支持Android 7.0及以上系统</li>
-                    <li>下载后需在手机设置中开启「允许安装未知来源应用」</li>
-                    <li>推荐下载2.0版本，功能最完整、稳定性最优</li>
-                    <li>扫码若未自动下载，可点击「立即下载」按钮或在浏览器中打开链接</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
     <!-- 加入我们 -->
-    <section id="join" class="section">
+    <section id="join" class="join section">
         <div class="container">
             <h2 class="section-title">加入我们</h2>
-            <div class="join-form">
-                <div class="form-group">
-                    <label for="name">姓名</label>
-                    <input type="text" id="name" placeholder="请输入您的姓名">
+            <div class="join-content">
+                <div class="job-card">
+                    <h3>电控工程师</h3>
+                    <div class="job-info">
+                        <h4>岗位职责</h4>
+                        <ul>
+                            <li>负责嵌入式系统开发，基于STM32/树莓派实现电机、传感器控制</li>
+                            <li>设计并调试数据采集模块，实现传感器数据的实时传输与解析</li>
+                            <li>配合机械团队完成设备联调，优化控制系统稳定性</li>
+                        </ul>
+                        <h4>任职要求</h4>
+                        <ul>
+                            <li>熟悉STM32/树莓派开发，掌握C语言/Python编程</li>
+                            <li>了解常用传感器（温湿度、视觉、压力）的使用方法</li>
+                            <li>具备良好的问题排查能力和团队协作精神</li>
+                        </ul>
+                        <h4>联系方式</h4>
+                        <p class="contact"><i class="fas fa-envelope"></i> zengzhiyuang@126.com</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="phone">联系电话</label>
-                    <input type="tel" id="phone" placeholder="请输入您的联系电话">
-                </div>
-                <div class="form-group">
-                    <label for="email">邮箱</label>
-                    <input type="email" id="email" placeholder="请输入您的邮箱">
-                </div>
-                <div class="form-group">
-                    <label for="message">留言</label>
-                    <textarea id="message" rows="5" placeholder="请输入您的留言（如应聘岗位、合作意向等）"></textarea>
-                </div>
-                <button type="button" class="submit-btn">提交</button>
             </div>
         </div>
     </section>
 
     <!-- 页脚 -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <p>© 2026 初音未来甩大葱团队 版权所有</p>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>初音未来甩大葱团队</h3>
+                    <p>非淡泊无以明志，非宁静无以致远</p>
+                    <div class="social-links">
+                        <a href="https://github.com/zzy2102/dacong" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="mailto:zengzhiyuang@126.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 初音未来甩大葱团队. 保留所有权利。</p>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
